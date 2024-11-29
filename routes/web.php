@@ -6,27 +6,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('get-route', function() {
-    return;
+Route::get('/contact', function() {
+    $title = "Contact Page Dangkotlin";
+    $description = "
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum mollitia beatae cupiditate qui odit, impedit
+    quibusdam blanditiis sapiente doloremque optio excepturi veniam delectus rem error, eligendi odio dolorem, aut
+    molestias?
+    ";
+
+    $book = ['Deep work', "Steal like artist", "Branch in git"];
+
+    return view('contact.index', data: ['title' => $title, 'description' => $description, 'books' => $book]);
 });
 
-Route::post('post-route', function() {
-    return;
+Route::get('/about', function() {
+    return view('about.index');
 });
 
-Route::put('put-route', function() {
-    return;
-});
-
-Route::patch('patch-route', function() {
-    return;
-});
-
-Route::delete('delete-route', function() {
-    return;
-});
-
-Route::fallback(function() {
-    return "Ooops we couldn't find page";
+Route::get('/app', function() {
+    return view('app');
 });
 
