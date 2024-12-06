@@ -1,29 +1,19 @@
 <?php
 
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SingleActionController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/contact', function() {
-    $title = "Contact Page Dangkotlin";
-    $description = "
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum mollitia beatae cupiditate qui odit, impedit
-    quibusdam blanditiis sapiente doloremque optio excepturi veniam delectus rem error, eligendi odio dolorem, aut
-    molestias?
-    ";
+Route::get('/about', [HomeController::class, 'showAboutPage']);
 
-    $book = ['Deep work', "Steal like artist", "Branch in git"];
+Route::get('/single', SingleActionController::class);
 
-    return view('contact.index', data: ['title' => $title, 'description' => $description, 'books' => $book]);
-});
+// Route::post('/blog/create', [BlogController::class, 'create'])->name('blog.create');
+// Route::get('/blog/show', [BlogController::class, 'show'])->name('blog.show');
+// Route::post('/blog/create', [BlogController::class, 'create'])->name('blog.create');
+// Route::post('/blog/create', [BlogController::class, 'create'])->name('blog.create');
 
-Route::get('/about', function() {
-    return view('about.index');
-});
-
-Route::get('/app', function() {
-    return view('app');
-});
-
+Route::resource('/blog', BlogController::class);
