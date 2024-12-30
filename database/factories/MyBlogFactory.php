@@ -17,6 +17,7 @@ class MyBlogFactory extends Factory
     public function definition(): array
     {
         return [
+            'author' => fake()->sentence(10),
             'title' => fake()->sentence(10),
             'description' => fake()->paragraph(),
             'status' => fake()->boolean()

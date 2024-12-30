@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\MyBlog;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -10,43 +13,72 @@ class HomeController extends Controller
 {
     function index()
     {
-        //Insert Data
-        // DB::table('users')->insert
-        // (
-        //     [
-        //         [
-        //             'name' => 'Artik',
-        //             'email' => 'jartu@gmail.com',
-        //             'password' => '1234'
-        //         ],
-        //         [
-        //             'name' => 'Jhoan',
-        //             'email' => 'jhoan@gmail.com',
-        //             'password' => '1234'
-        //         ]
-        //     ]
-        // );
+        //Create data in db
+        // $user = new User();
+        // $user->name = 'DangAndroid';
+        // $user->email = 'dangAdnroAdnro@gmail.com';
+        // $user->password = 'dang';
+        // $user->save();
 
-        //Get Data From DB
-        // $users = DB::table('users')->where('email', 'jaratu@gmail.com')->where('id', 6)->first();
-        //$users = DB::table('users')->where('id','>', 1)->get();
+        // $product = new Product();
+        // $product->name = 'Car';
+        // $product->description = 'This is a des';
+        // $product->price = 200;
+        // $product->save();
 
-        //Update Data From DB
-        // DB::table('users')->where('id', 6)->update([
-        //     'name' => 'Dang Kotlin Android',
-        //     'email' => 'kotlin@gmail.com'
+        //Read
+        // $users = User::all();
+        // foreach($users as $user) {
+        //     echo $user->name . '---' . $user->email;
+        //     echo "<br>";
+        // }
+
+        //Update
+        // $user = User::where('id', 1)->first();
+        // $user->email = 'Dangrtx@gmail.com';
+        // $user->password = 'kotlin';
+        // $user->save();
+
+        //Delete
+        // $user = User::findOrFail(1);
+        // $user->delete();
+
+        // User::create([
+        //     'name' => 'test user 123',
+        //     'email' => 'test123@gmail.com',
+        //     'password' => '1234',
+        //     'remember_token' => 'test1234'
         // ]);
 
-        // $blogs = DB::table('blogs')->select('title')->get();
-        // $blogs = DB::table('blogs')->pluck('title', 'id');
+        // User::insert([
+        //     [
+        //         'name' => 'test user 2',
+        //         'email' => 'testuser2@gmail.com',
+        //         'password' => '1234'
+        //     ],
+        //     [
+        //         'name' => 'test user 3',
+        //         'email' => 'testuser3@gmail.com',
+        //         'password' => '1234'
+        //     ]
+        // ]);
+
+        // $product = Product::where(['id' => 1, 'price' => 305])->get();
+        // $product = Product::where('name', 'NOT LIKE', '%Car%')->orWhere('description', 'LIKE', '%ab%')->get();
+        // $product = Product::whereIn('id', [1, 2, 3])->get();
+        // $product = Product::whereBetween('price', [100, 400])->get();
+        // return $product;
+
+        // $blogs = MyBlog::Active()->get();
         // return $blogs;
 
+        //$product = Product::withTrashed()->get();
+        // $product = Product::onlyTrashed()->get();
+        // return $product;
 
-        //Delete Data From DB
-        //DB::table('users')->where('id', '>', 1)->delete();
-
-        $product = DB::table('products')->max('price');
-        return $product;
+        // $product = Product::withTrashed()->find(4)->restore();
+        // $product = Product::withTrashed()->find(4);
+        // $product->forceDelete();
 
         return view('welcome');
     }
